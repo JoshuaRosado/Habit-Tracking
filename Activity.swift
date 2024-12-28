@@ -7,12 +7,21 @@
 
 import SwiftUI
 
-struct Activity: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+struct Activity: Codable, Identifiable, Equatable {
+    var id = UUID()
+    let title: String
+    let description: String
+
 }
 
-#Preview {
-    Activity()
+@Observable
+class Activities {
+    @State private var activityList : [Activity] = []
+    
+    
+    
 }
+
+//#Preview {
+//    Activity()
+//}
