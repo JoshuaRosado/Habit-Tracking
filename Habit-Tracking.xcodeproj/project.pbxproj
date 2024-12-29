@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A20C7DED2D1F86C400A04FB8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20C7DEC2D1F86C400A04FB8 /* Activity.swift */; };
+		A20C7DEF2D20CEB300A04FB8 /* NewAcitivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20C7DEE2D20CEB300A04FB8 /* NewAcitivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,7 @@
 		A20C7DCF2D1F855400A04FB8 /* Habit-TrackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit-TrackingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20C7DD92D1F855400A04FB8 /* Habit-TrackingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit-TrackingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20C7DEC2D1F86C400A04FB8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		A20C7DEE2D20CEB300A04FB8 /* NewAcitivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAcitivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -80,6 +82,7 @@
 		A20C7DB62D1F855000A04FB8 = {
 			isa = PBXGroup;
 			children = (
+				A20C7DEE2D20CEB300A04FB8 /* NewAcitivity.swift */,
 				A20C7DEC2D1F86C400A04FB8 /* Activity.swift */,
 				A20C7DC12D1F855000A04FB8 /* Habit-Tracking */,
 				A20C7DD22D1F855400A04FB8 /* Habit-TrackingTests */,
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A20C7DED2D1F86C400A04FB8 /* Activity.swift in Sources */,
+				A20C7DEF2D20CEB300A04FB8 /* NewAcitivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

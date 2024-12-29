@@ -16,11 +16,15 @@ struct Activity: Codable, Identifiable, Equatable {
 
 @Observable
 class Activities {
-    @State private var activityList : [Activity] = []
+    var activityList : [Activity]
     
-    
-    
+    init(activityList: [Activity]) {
+        self.activityList = activityList
+    }
+
 }
+
+
 
 //#Preview {
 //    Activity()
