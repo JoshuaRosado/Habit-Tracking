@@ -19,17 +19,26 @@ struct NewAcitivity: View {
                         TextField("Title", text:  $title)
                         TextField("Description", text: $description)
                     }
-                    .toolbar{
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing){
                             Button(action: {
-                                print("hello")
+                                print("Add")
                             }){
                                 Image(systemName: "plus")
                                     .frame(width: 100, height: 100)
                                     .foregroundStyle(.blue)
-                                    
+                                    .padding(-15)
                                 
+                            
                             }
-
+                        }
+                        
+                        ToolbarItem(placement: .topBarLeading){
+                            Button("Cancel",action: {
+                                print("Cancel")
+                            })
+                            .padding(5)
+                        }
                     }
 
                     
