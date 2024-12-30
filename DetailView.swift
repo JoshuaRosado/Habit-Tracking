@@ -8,19 +8,29 @@
 import SwiftUI
 
 struct DetailView: View {
+    @State private var activityCompleted: Int = 0
     var body: some View {
+        
         NavigationStack{
             List(0..<10){ i in
                     
                     NavigationLink(" \(i)",value: i)
-                        
-                        
-                    
-                    
                 }
                 .navigationDestination(for: Int.self) { number in
-                    Text("Description of \(number)")
-                
+                    VStack{
+                        Spacer()
+                        Text("Description of \(number)")
+                        Spacer()
+                        HStack{
+                            Button("Done"){
+                                activityCompleted += 1
+                            }
+                            .buttonBorderShape(.roundedRectangle)
+                            .buttonStyle(.bordered)
+                            Text("Times completed : \(activityCompleted)")
+                            
+                        }
+                    }
             }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing){
