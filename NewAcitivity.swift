@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewAcitivity: View {
+struct NewActivity: View {
     @State private var title : String = ""
     @State private var description: String = ""
     
@@ -24,7 +24,7 @@ struct NewAcitivity: View {
                             Button(action: {
                                 print("Add")
                             }){
-                                Image(systemName: "plus")
+                                Text("Create")
                                     .frame(width: 100, height: 100)
                                     .foregroundStyle(.blue)
                                     .padding(-15)
@@ -44,7 +44,8 @@ struct NewAcitivity: View {
                     
                     
                 }
-                .navigationTitle("Add activity")
+                .navigationTitle("New activity")
+                .navigationBarTitleDisplayMode(.inline)
                 
             }
             
@@ -55,5 +56,5 @@ struct NewAcitivity: View {
 }
 
 #Preview {
-    NewAcitivity()
+    NewActivity()
 }
