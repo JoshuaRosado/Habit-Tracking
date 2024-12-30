@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+struct ActivityCompleted: Codable{
+    var completedCount: Int
+}
+
 struct DetailView: View {
-    @State private var activityCompleted: Int = 0
+    
+    @State private var tapCount = ActivityCompleted(completedCount: 0)
+    
     var body: some View {
         
         NavigationStack{
@@ -23,11 +29,17 @@ struct DetailView: View {
                         Spacer()
                         HStack{
                             Button("Done"){
-                                activityCompleted += 1
+                                tapCount.completedCount += 1
+                                let encoder = JSONEncoder()
+                                
+                                if let data = try? encoder.encode(tapCount.completedCount){
+                                    UserDefaults.standard.set(data, forKey: "Tap")
+                                }
+                                
                             }
                             .buttonBorderShape(.roundedRectangle)
                             .buttonStyle(.bordered)
-                            Text("Times completed : \(activityCompleted)")
+                            Text("Times completed : \(tapCount.completedCount)")
                             
                         }
                     }
@@ -36,6 +48,7 @@ struct DetailView: View {
                     ToolbarItem(placement: .topBarTrailing){
                         Button(action: {
                             print("Add")
+                            
                         }){
                             Image(systemName: "plus")
                                 .frame(width: 100, height: 100)
