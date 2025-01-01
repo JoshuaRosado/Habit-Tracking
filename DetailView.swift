@@ -7,21 +7,18 @@
 
 import SwiftUI
 
-//struct ActivityCompleted: Codable{
-//    var completedCount: Int
-//}
-
 
 
 struct DetailView: View {
-    
+    @State private  var activities = Activities()
+    @State private var showingSheet = false
     @State private var tapCount = ActivityCompleted(completedCount: 0)
     
     var body: some View {
         
         NavigationStack{
             
-            List(0..<10){ i in
+            ForEach(activities.activityList, id: \.id){ i in
                 NavigationLink("\(i)", value: i)
                 
             }
@@ -31,7 +28,8 @@ struct DetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing){
                     Button(action: {
-                        print("Add")
+                        
+                        showingSheet.toggle()
                         
                     }){
                         Image(systemName: "plus")
@@ -44,8 +42,12 @@ struct DetailView: View {
                 }
                 
             }
+            .sheet(isPresented: $showingSheet){
+                NewActivity()
+            }
             .navigationTitle("Habit-Tracking")
             .navigationBarTitleDisplayMode(.inline)
+            
             
             
             

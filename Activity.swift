@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Activity: Codable, Identifiable, Equatable {
+struct Activity:Hashable, Codable, Identifiable, Equatable {
     var id = UUID()
     let title: String
     let description: String
@@ -16,12 +16,30 @@ struct Activity: Codable, Identifiable, Equatable {
 
 @Observable
 class Activities {
-    var activityList : [Activity]
-    
-    init(activityList: [Activity]) {
-        self.activityList = activityList
+    var activityList = [Activity](){
+        
+        didSet {
+            if let encoded = try? JSONEncoder().encode(activityList) {
+                UserDefaults.standard.set(encoded, forKey: "Activities")
+            }
+        }
     }
-
+    
+    init() {
+        
+        
+        if let savedActivities = UserDefaults.standard.data(forKey: "Activities"){
+            
+            if let decodedActivities = try? JSONDecoder().decode([Activity].self, from: savedActivities) {
+                
+                activityList = decodedActivities
+                return
+            }
+        }
+        
+        activityList = []
+    }
+    
 }
 
 
