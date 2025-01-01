@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct DetailView: View {
-    @State private  var activities = Activities()
+    @State private var activities = Activities()
     @State private var showingSheet = false
     @State private var tapCount = ActivityCompleted(completedCount: 0)
     
@@ -43,7 +43,7 @@ struct DetailView: View {
                 
             }
             .sheet(isPresented: $showingSheet){
-                NewActivity()
+                NewActivity( activities: activities)
             }
             .navigationTitle("Habit-Tracking")
             .navigationBarTitleDisplayMode(.inline)

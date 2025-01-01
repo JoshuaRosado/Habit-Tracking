@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct NewActivity: View {
-    @State private var title : String = ""
-    @State private var description: String = ""
+    
+    @Environment(\.dismiss) var dismiss
+    @State private var title : String = "Hello"
+    @State private var description: String = "Hola"
+    
+    var activities : Activities
     
     var body: some View {
         VStack{
@@ -21,8 +25,14 @@ struct NewActivity: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
+                            let act = Activity(title: title, description: description)
                             Button(action: {
-                                print("Add")
+                                
+                                activities.activityList.append(act)
+                                
+                                dismiss()
+                                
+                                
                             }){
                                 Text("Create")
                                     .frame(width: 100, height: 100)
@@ -35,7 +45,7 @@ struct NewActivity: View {
                         
                         ToolbarItem(placement: .topBarLeading){
                             Button("Cancel",action: {
-                                print("Cancel")
+                                dismiss()
                             })
                             .padding(5)
                         }
@@ -55,6 +65,6 @@ struct NewActivity: View {
     
 }
 
-#Preview {
-    NewActivity()
-}
+//#Preview {
+//    NewActivity()
+//}
