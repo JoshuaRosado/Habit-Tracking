@@ -17,10 +17,11 @@ struct DetailView: View {
     var body: some View {
         
         NavigationStack{
-            
-            ForEach(activities.activityList, id: \.id){ i in
-                NavigationLink("\(i)", value: i)
-                
+            List{
+                ForEach(activities.activityList, id: \.id){ i in
+                    NavigationLink("\(i.title)", value: i.title)
+                    
+                }
             }
             .navigationDestination(for: Int.self) { number in
                 DetailSheet(number: number)

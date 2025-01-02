@@ -14,18 +14,26 @@ struct ActivityCompleted: Codable{
  
 struct DetailSheet: View{
     var number : Int
+    var title : String
+    var description : String
     @State private var tapCount = ActivityCompleted(completedCount: 0)
     
     
     var body: some View {
- 
+        NavigationStack{
+            
+            
             VStack{
-                Spacer()
-                Text("Description of \(number)")
+                
+                
+                Text("Description: \(description)")
+                    .padding(.top, 50)
+
                 Spacer()
                 HStack{
                     Button("Done"){
                         tapCount.completedCount += 1
+                        
                         let encoder = JSONEncoder()
                         
                         if let data = try? encoder.encode(tapCount.completedCount){
@@ -39,9 +47,11 @@ struct DetailSheet: View{
                     
                 }
             }
+            .navigationTitle(title)
         }
         
     }
+}
 
 
 #Preview {
