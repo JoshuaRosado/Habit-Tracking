@@ -6,22 +6,21 @@
 //
 
 import SwiftUI
-
-struct ActivityCompleted: Codable{
-    var completedCount: Int
-}
+//
+//struct ActivityCompleted: Codable{
+//    var completedCount: Int
+//}
  
  
 struct DetailSheet: View{
     var title : String
     var description : String
-    @State private var tapCount = ActivityCompleted(completedCount: 0)
+    var tapCount = 0
+//    @State private var tapCount = ActivityCompleted(completedCount: 0)
     
     
     var body: some View {
-        NavigationStack{
-            
-            
+
             VStack{
                 
                 
@@ -31,22 +30,22 @@ struct DetailSheet: View{
                 Spacer()
                 HStack{
                     Button("Done"){
-                        tapCount.completedCount += 1
-                        
-                        let encoder = JSONEncoder()
-                        
-                        if let data = try? encoder.encode(tapCount.completedCount){
-                            UserDefaults.standard.set(data, forKey: "Tap")
-                        }
+//                        tapCount.completedCount += 1
+//                        
+//                        let encoder = JSONEncoder()
+//                        
+//                        if let data = try? encoder.encode(tapCount.completedCount){
+//                            UserDefaults.standard.set(data, forKey: "Tap")
+//                        }
                         
                     }
                     .buttonBorderShape(.roundedRectangle)
                     .buttonStyle(.bordered)
-                    Text("Times completed : \(tapCount.completedCount)")
+                    Text("Times completed : \(tapCount)")
+//                    Text("Times completed : \(tapCount.completedCount)")
                     
                 }
-            }
-            .navigationTitle(title)
+
         }
         
     }

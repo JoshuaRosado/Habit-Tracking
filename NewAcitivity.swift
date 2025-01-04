@@ -29,6 +29,7 @@ struct NewActivity: View {
                             Button(action: {
                                 
                                 activities.activityList.append(act)
+                                print("Activity: \(act), was added to \(activities.activityList)")
                                 
                                 dismiss()
                                 

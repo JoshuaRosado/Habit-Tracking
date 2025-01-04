@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Activity:Hashable, Codable, Identifiable, Equatable {
+struct Activity: Hashable, Codable, Identifiable, Equatable {
     var id = UUID()
     var title: String
     var description: String
@@ -16,7 +16,7 @@ struct Activity:Hashable, Codable, Identifiable, Equatable {
 
 @Observable
 class Activities {
-    var activityList = [Activity](){
+     var activityList = [Activity](){
         
         didSet {
             if let encoded = try? JSONEncoder().encode(activityList) {
