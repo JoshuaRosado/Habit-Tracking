@@ -13,7 +13,6 @@ struct ActivityCompleted: Codable{
  
  
 struct DetailSheet: View{
-    var number : Int
     var title : String
     var description : String
     @State private var tapCount = ActivityCompleted(completedCount: 0)
@@ -55,5 +54,5 @@ struct DetailSheet: View{
 
 
 #Preview {
-    DetailSheet(number: 0)
+    DetailSheet(title: "Title", description: "Description")
 }

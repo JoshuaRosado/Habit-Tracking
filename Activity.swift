@@ -9,8 +9,8 @@ import SwiftUI
 
 struct Activity:Hashable, Codable, Identifiable, Equatable {
     var id = UUID()
-    let title: String
-    let description: String
+    var title: String
+    var description: String
 
 }
 

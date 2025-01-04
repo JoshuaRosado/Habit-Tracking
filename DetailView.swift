@@ -18,14 +18,16 @@ struct DetailView: View {
         
         NavigationStack{
             List{
+                
                 ForEach(activities.activityList, id: \.id){ i in
-                    NavigationLink("\(i.title)", value: i.title)
+                    NavigationLink("\(i.title)",value: i)
                     
                 }
             }
-            .navigationDestination(for: Int.self) { number in
-                DetailSheet(number: number)
+            .navigationDestination(for: Activity.self) { activity in
+                DetailSheet(title: activity.title, description: activity.description)
             }
+                
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing){
                     Button(action: {
