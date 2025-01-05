@@ -22,8 +22,15 @@ struct DetailSheet: View{
     var body: some View {
 
             VStack{
-                
-                
+                HStack{
+                    Text(title)
+                        .font(.largeTitle).bold()
+                        .padding(.horizontal,30)
+                        .padding(.top, 30)
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                }
+                    
+                Spacer()
                 Text("Description: \(description)")
                     .padding(.top, 50)
 

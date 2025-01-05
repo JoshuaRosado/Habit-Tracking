@@ -25,6 +25,7 @@ struct DetailView: View {
                     }
                     
                 }
+                .onDelete(perform: removeRows)
             }
             .navigationDestination(for: Activity.self) { activity in
                 DetailSheet(title: activity.title , description: activity.description)
@@ -54,6 +55,9 @@ struct DetailView: View {
 
         }
         }
+    func removeRows( at offsets: IndexSet ){
+        activities.activityList.remove(atOffsets: offsets)
+    }
     }
 #Preview {
     DetailView()
