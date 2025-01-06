@@ -28,7 +28,7 @@ struct DetailView: View {
                 .onDelete(perform: removeRows)
             }
             .navigationDestination(for: Activity.self) { activity in
-                DetailSheet(title: activity.title , description: activity.description)
+                DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCount:0)
             }
                 
             .toolbar {

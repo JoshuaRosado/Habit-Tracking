@@ -25,7 +25,7 @@ struct NewActivity: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
-                            let act = Activity(title: title, description: description)
+                            let act = Activity(title: title, description: description, tapCount: 0)
                             Button(action: {
                                 
                                 activities.activityList.append(act)

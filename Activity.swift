@@ -11,6 +11,9 @@ struct Activity: Hashable, Codable, Identifiable, Equatable {
     var id = UUID()
     var title: String
     var description: String
+    var tapCount: Int
+    
+    
 
 }
 

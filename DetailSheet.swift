@@ -7,15 +7,19 @@
 
 import SwiftUI
 //
-//struct ActivityCompleted: Codable{
-//    var completedCount: Int
-//}
+struct ActivityCompleted: Codable{
+    var completedCount: Int
+} 
  
  
 struct DetailSheet: View{
+    var activities: Activities
+//    var newActivity = data.activities[index]
     var title : String
     var description : String
-    var tapCount = 0
+
+    @State var tapCount : Int
+    @AppStorage("tapCompletionCount") private var tapCompletionCount = 0
 //    @State private var tapCount = ActivityCompleted(completedCount: 0)
     
     
@@ -26,7 +30,7 @@ struct DetailSheet: View{
                     Text(title)
                         .font(.largeTitle).bold()
                         .padding(.horizontal,30)
-                        .padding(.top, 30)
+                        .padding(.top,30)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
                     
@@ -37,22 +41,22 @@ struct DetailSheet: View{
                 Spacer()
                 HStack{
                     Button("Done"){
-//                        tapCount.completedCount += 1
-//                        
-//                        let encoder = JSONEncoder()
-//                        
-//                        if let data = try? encoder.encode(tapCount.completedCount){
-//                            UserDefaults.standard.set(data, forKey: "Tap")
-//                        }
+                        tapCompletionCount += 1
                         
+                        let encoder = JSONEncoder()
+                        
+                        if let data = try? encoder.encode(tapCompletionCount){
+                            UserDefaults.standard.set(data, forKey: "Tap")
+                         }
+                         
                     }
                     .buttonBorderShape(.roundedRectangle)
                     .buttonStyle(.bordered)
-                    Text("Times completed : \(tapCount)")
-//                    Text("Times completed : \(tapCount.completedCount)")
+//                    Text("Times completed : \(tapCount)")
+                    Text("Times completed : \(tapCompletionCount)")
                     
                 }
-
+ 
         }
         
     }
@@ -60,5 +64,7 @@ struct DetailSheet: View{
 
 
 #Preview {
-    DetailSheet(title: "Title", description: "Description")
+    let act = Activities()
+
+    DetailSheet(activities: act, title: "Title", description: "Description", tapCount: 0)
 }
