@@ -7,10 +7,7 @@
 
 import SwiftUI
 //
-struct ActivityCompleted: Codable{
-    var completedCount: Int
-} 
- 
+
  
 struct DetailSheet: View{
     var activities: Activities
@@ -47,7 +44,7 @@ struct DetailSheet: View{
                         
                         if let data = try? encoder.encode(tapCompletionCount){
                             UserDefaults.standard.set(data, forKey: "Tap")
-                         }
+                        }
                          
                     }
                     .buttonBorderShape(.roundedRectangle)

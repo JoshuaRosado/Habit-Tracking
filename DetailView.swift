@@ -12,7 +12,8 @@ import SwiftUI
 struct DetailView: View {
     @State private var activities = Activities()
     @State private var showingSheet = false
-//    @State private var tapCount = ActivityCompleted(completedCount: 0)
+
+    @AppStorage("tapCompletionCount") private var tapCompletionCount = 0
     
     var body: some View {
         
@@ -22,13 +23,14 @@ struct DetailView: View {
                 ForEach(activities.activityList, id: \.id){ activity in
                     NavigationLink(value: activity){
                         Text(activity.title)
+                        Text("Completed \(activity.tapCompletionCount)")
                     }
                     
                 }
                 .onDelete(perform: removeRows)
             }
             .navigationDestination(for: Activity.self) { activity in
-                DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCount:0)
+                DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCount:activity.tapCompletionCount)
             }
                 
             .toolbar {
