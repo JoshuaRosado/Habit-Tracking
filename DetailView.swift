@@ -10,10 +10,9 @@ import SwiftUI
 
 
 struct DetailView: View {
-    @State private var activities = Activities()
+    @ObservedObject var activities = Activities()
     @State private var showingSheet = false
 
-    @AppStorage("tapCompletionCount") private var tapCompletionCount = 0
     
     var body: some View {
         
@@ -26,11 +25,21 @@ struct DetailView: View {
                         Text("Completed \(activity.tapCompletionCount)")
                     }
                     
+                    .onTapGesture{
+                        handleTapGesture(for: activity)
+                        }
+                        
+                    
+                    }
+                            .onDelete(perform: removeRows)
+                        
                 }
-                .onDelete(perform: removeRows)
+                
             }
+                
+               
             .navigationDestination(for: Activity.self) { activity in
-                DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCount:activity.tapCompletionCount)
+                DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCompletionCount:activity.tapCompletionCount)
             }
                 
             .toolbar {
@@ -56,9 +65,25 @@ struct DetailView: View {
             .navigationBarTitleDisplayMode(.inline)
 
         }
-        }
+        
+
+    
+
     func removeRows( at offsets: IndexSet ){
         activities.activityList.remove(atOffsets: offsets)
+    }
+
+    private func handleTapGesture(for activity: Activity) {
+      
+           if let index = activities.activityList.firstIndex(where: { $0.id == activity.id }) {
+
+               incrementCompletionCount(at: index)
+           }
+       }
+
+    
+    private func incrementCompletionCount(at index: Int){
+        activities.activityList[index].tapCompletionCount += 1
     }
     }
 #Preview {

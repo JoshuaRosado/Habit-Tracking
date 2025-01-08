@@ -13,7 +13,7 @@ struct NewActivity: View {
     @State private var title : String = ""
     @State private var description: String = ""
     
-    var activities : Activities
+    @ObservedObject var activities : Activities
     
     var body: some View {
         VStack{
@@ -25,11 +25,11 @@ struct NewActivity: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
-                            let act = Activity(title: title, description: description)
+                            let newActivity = Activity(title: title, description: description, tapCompletionCount:0 )
                             Button(action: {
                                 
-                                activities.activityList.append(act)
-                                print("Activity: \(act), was added to \(activities.activityList)")
+                                activities.activityList.append(newActivity)
+                                print("Activity: \(newActivity), was added to \(activities.activityList)")
                                 
                                 dismiss()
                                 

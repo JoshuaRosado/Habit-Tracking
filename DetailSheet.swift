@@ -15,8 +15,8 @@ struct DetailSheet: View{
     var title : String
     var description : String
 
-    @State var tapCount : Int
-    @AppStorage("tapCompletionCount") private var tapCompletionCount = 0
+    @State var tapCompletionCount : Int
+//    @AppStorage("tapCompletionCount") private var tapCompletionCount = 0
 //    @State private var tapCount = ActivityCompleted(completedCount: 0)
     
     
@@ -63,5 +63,5 @@ struct DetailSheet: View{
 #Preview {
     let act = Activities()
 
-    DetailSheet(activities: act, title: "Title", description: "Description", tapCount: 0)
+    DetailSheet(activities: act, title: "Title", description: "Description", tapCompletionCount: 0)
 }

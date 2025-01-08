@@ -18,9 +18,9 @@ struct Activity: Hashable, Codable, Identifiable, Equatable {
 
 }
 
-@Observable
-class Activities {
-     var activityList = [Activity](){
+
+class Activities: ObservableObject{
+     @Published var activityList = [Activity](){
         
         didSet {
             if let encoded = try? JSONEncoder().encode(activityList) {
