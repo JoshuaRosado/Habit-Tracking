@@ -25,22 +25,24 @@ struct DetailView: View {
                         Text("Completed \(activity.tapCompletionCount)")
                     }
                     
-                    .onTapGesture{
-                        handleTapGesture(for: activity)
-                        }
-                        
+                    //                    .onTapGesture{
+                    //                        handleTapGesture(for: activity)
+                    //                        }
+                    //
                     
-                    }
-                            .onDelete(perform: removeRows)
-                        
                 }
                 
-            }
+                .onDelete(perform: removeRows)
                 
-               
+            }
+            
+            
+            
+            
             .navigationDestination(for: Activity.self) { activity in
                 DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCompletionCount:activity.tapCompletionCount)
             }
+        }
                 
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing){
@@ -73,18 +75,18 @@ struct DetailView: View {
         activities.activityList.remove(atOffsets: offsets)
     }
 
-    private func handleTapGesture(for activity: Activity) {
-      
-           if let index = activities.activityList.firstIndex(where: { $0.id == activity.id }) {
-
-               incrementCompletionCount(at: index)
-           }
-       }
-
-    
-    private func incrementCompletionCount(at index: Int){
-        activities.activityList[index].tapCompletionCount += 1
-    }
+//    private func handleTapGesture(for activity: Activity) {
+//      
+//           if let index = activities.activityList.firstIndex(where: { $0.id == activity.id }) {
+//
+//               incrementCompletionCount(at: index)
+//           }
+//       }
+//
+//    
+//    private func incrementCompletionCount(at index: Int){
+//        activities.activityList[index].tapCompletionCount += 1
+//    }
     }
 #Preview {
     DetailView()

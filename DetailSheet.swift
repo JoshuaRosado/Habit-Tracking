@@ -10,14 +10,12 @@ import SwiftUI
 
  
 struct DetailSheet: View{
-    var activities: Activities
-//    var newActivity = data.activities[index]
+    @ObservedObject var activities: Activities
+
     var title : String
     var description : String
-
     @State var tapCompletionCount : Int
-//    @AppStorage("tapCompletionCount") private var tapCompletionCount = 0
-//    @State private var tapCount = ActivityCompleted(completedCount: 0)
+
     
     
     var body: some View {
@@ -37,25 +35,45 @@ struct DetailSheet: View{
 
                 Spacer()
                 HStack{
-                    Button("Done"){
-                        tapCompletionCount += 1
+                    ForEach(activities.activityList){ activity in
+//                        Button("Done"){
+//                            activity.tapCompletionCount += 1
+//                            
+//                        }
+//                        .buttonBorderShape(.roundedRectangle)
+//                        .buttonStyle(.bordered)
                         
-                        let encoder = JSONEncoder()
+                        Text("Times completed : \(activity.tapCompletionCount)")
                         
-                        if let data = try? encoder.encode(tapCompletionCount){
-                            UserDefaults.standard.set(data, forKey: "Tap")
-                        }
-                         
+                            .onTapGesture {
+                                handleTapGesture(for: activity)
+                                //                        }
+                            }
                     }
-                    .buttonBorderShape(.roundedRectangle)
-                    .buttonStyle(.bordered)
-//                    Text("Times completed : \(tapCount)")
-                    Text("Times completed : \(tapCompletionCount)")
-                    
                 }
+//                ForEach(activities.activityList){ activity in
+//                    Text("Result = \(activity.tapCompletionCount)")
+//                        .onTapGesture {
+//                            handleTapGesture(for: activity)
+//                            //                        }
+//                        }
+//                }
+                
  
         }
         
+    }
+    private func handleTapGesture(for activity: Activity) {
+      
+           if let index = activities.activityList.firstIndex(where: { $0.id == activity.id }) {
+
+               incrementCompletionCount(at: index)
+           }
+       }
+
+    
+    private func incrementCompletionCount(at index: Int){
+        activities.activityList[index].tapCompletionCount += 1
     }
 }
 
