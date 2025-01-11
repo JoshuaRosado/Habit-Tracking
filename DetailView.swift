@@ -21,8 +21,26 @@ struct DetailView: View {
                 
                 ForEach(activities.activityList, id: \.id){ activity in
                     NavigationLink(value: activity){
-                        Text(activity.title)
-                        Text("Completed \(activity.tapCompletionCount)")
+                        VStack{
+                            
+                            HStack{
+                                
+                                
+                                Text(activity.title)
+                                Spacer()
+                                VStack{
+                                    ZStack{
+                                        Rectangle()
+                                            
+                                        Text("\(activity.tapCompletionCount)")
+                                        
+                                    }
+                                    Text("Completed: ")
+                                    
+                                }
+                            }
+                            
+                        }
                     }
                     
                     //                    .onTapGesture{
@@ -42,6 +60,8 @@ struct DetailView: View {
             .navigationDestination(for: Activity.self) { activity in
                 DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCompletionCount:activity.tapCompletionCount)
             }
+            .navigationTitle("Habit-Tracking")
+            .navigationBarTitleDisplayMode(.inline)
         }
                 
             .toolbar {
@@ -63,10 +83,10 @@ struct DetailView: View {
             .sheet(isPresented: $showingSheet){
                 NewActivity( activities: activities)
             }
-            .navigationTitle("Habit-Tracking")
-            .navigationBarTitleDisplayMode(.inline)
+            
 
         }
+    
         
 
     
