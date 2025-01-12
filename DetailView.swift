@@ -17,42 +17,61 @@ struct DetailView: View {
     var body: some View {
         
         NavigationStack{
-            List{
+            ZStack{
                 
-                ForEach(activities.activityList, id: \.id){ activity in
-                    NavigationLink(value: activity){
-                        VStack{
-                            
+                
+                RadialGradient(colors: [Color.white.opacity(0.5), Color.mint.opacity(0.6)] ,center: .top, startRadius: 900, endRadius: 5)
+                    .ignoresSafeArea()
+                VStack{
+                    
+                    ForEach(activities.activityList, id: \.id){ activity in
+                        NavigationLink(value: activity){
                             HStack{
                                 
-                                
-                                Text(activity.title)
-                                Spacer()
-                                VStack{
-                                    ZStack{
-                                        Rectangle()
-                                            
-                                        Text("\(activity.tapCompletionCount)")
-                                        
-                                    }
+                                VStack(alignment: .leading){
+                                    
+                                    
+                                    Text(activity.title)
+                                        .font(.title3)
                                     Text("Completed: ")
+                                        .font(.caption)
+                                        .foregroundStyle(.gray)
                                     
                                 }
+                                HStack{
+                                    
+                                    Spacer()
+                                    ZStack{
+                                        Circle()
+                                            .fill(.white)
+                                            .frame(maxWidth: 45, maxHeight: 45)
+                                            .shadow(color: .black.opacity(0.1), radius: 4, x: 2.5, y: 2.5)
+                                            .padding(.horizontal)
+                                        
+                                        Text("\(activity.tapCompletionCount)")
+                                    }
+                                    
+                                }
+                                
+                                
                             }
                             
                         }
+                        .padding(10)
+                        
+                        
+                        
                     }
                     
-                    //                    .onTapGesture{
-                    //                        handleTapGesture(for: activity)
-                    //                        }
-                    //
+                    
+                    
+                    .onDelete(perform: removeRows)
                     
                 }
-                
-                .onDelete(perform: removeRows)
-                
             }
+            
+            
+            
             
             
             
@@ -61,9 +80,10 @@ struct DetailView: View {
                 DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCompletionCount:activity.tapCompletionCount)
             }
             .navigationTitle("Habit-Tracking")
+            
             .navigationBarTitleDisplayMode(.inline)
-        }
-                
+            
+            
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing){
                     Button(action: {
@@ -74,7 +94,9 @@ struct DetailView: View {
                         Image(systemName: "plus")
                             .frame(width: 100, height: 100)
                             .foregroundStyle(.blue)
-                            .padding(-15)
+                            .padding(15)
+                            
+                        
 
                     }
                 }
@@ -83,6 +105,9 @@ struct DetailView: View {
             .sheet(isPresented: $showingSheet){
                 NewActivity( activities: activities)
             }
+        }
+                
+            
             
 
         }
