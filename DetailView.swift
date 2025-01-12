@@ -17,27 +17,31 @@ struct DetailView: View {
     var body: some View {
         
         NavigationStack{
-            ZStack{
+            
+            List{
+                HStack{
+                    Text("Title")
+                    Spacer()
+                    Text("Times completed")
+                }
+                .font(.caption).foregroundStyle(.gray)
+                .padding(.horizontal)
                 
                 
-                RadialGradient(colors: [Color.white.opacity(0.5), Color.mint.opacity(0.6)] ,center: .top, startRadius: 900, endRadius: 5)
-                    .ignoresSafeArea()
-                VStack{
-                    
-                    ForEach(activities.activityList, id: \.id){ activity in
-                        NavigationLink(value: activity){
-                            HStack{
+                ForEach(activities.activityList, id: \.id){ activity in
+                    NavigationLink(value: activity){
+                        HStack{
+                            
+                            VStack(alignment: .leading){
                                 
-                                VStack(alignment: .leading){
-                                    
-                                    
-                                    Text(activity.title)
-                                        .font(.title3)
-                                    Text("Completed: ")
-                                        .font(.caption)
-                                        .foregroundStyle(.gray)
-                                    
-                                }
+                                
+                                Text(activity.title)
+                                    .font(.title3)
+                                Text(activity.description)
+                                    .truncationMode(.tail)
+                                    .previewLayout(.sizeThatFits)
+                                
+                            }
                                 HStack{
                                     
                                     Spacer()
@@ -47,27 +51,26 @@ struct DetailView: View {
                                             .frame(maxWidth: 45, maxHeight: 45)
                                             .shadow(color: .black.opacity(0.1), radius: 4, x: 2.5, y: 2.5)
                                             .padding(.horizontal)
-                                        
+                                            
                                         Text("\(activity.tapCompletionCount)")
                                     }
                                     
                                 }
-                                
-                                
-                            }
+                            
                             
                         }
-                        .padding(10)
-                        
-                        
                         
                     }
+                    .padding(10)
                     
                     
-                    
-                    .onDelete(perform: removeRows)
                     
                 }
+                
+                
+                
+                .onDelete(perform: removeRows)
+                
             }
             
             
