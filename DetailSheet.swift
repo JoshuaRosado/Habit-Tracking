@@ -51,13 +51,7 @@ struct DetailSheet: View{
                             }
                     }
                 }
-//                ForEach(activities.activityList){ activity in
-//                    Text("Result = \(activity.tapCompletionCount)")
-//                        .onTapGesture {
-//                            handleTapGesture(for: activity)
-//                            //                        }
-//                        }
-//                }
+
                 
  
         }

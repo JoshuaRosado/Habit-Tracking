@@ -47,7 +47,3 @@ class Activities: ObservableObject{
 }
 
 
-
-//#Preview {
-//    Activity()
-//}

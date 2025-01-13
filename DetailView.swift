@@ -123,18 +123,6 @@ struct DetailView: View {
         activities.activityList.remove(atOffsets: offsets)
     }
 
-//    private func handleTapGesture(for activity: Activity) {
-//      
-//           if let index = activities.activityList.firstIndex(where: { $0.id == activity.id }) {
-//
-//               incrementCompletionCount(at: index)
-//           }
-//       }
-//
-//    
-//    private func incrementCompletionCount(at index: Int){
-//        activities.activityList[index].tapCompletionCount += 1
-//    }
     }
 #Preview {
     DetailView()

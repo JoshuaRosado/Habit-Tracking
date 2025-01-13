@@ -66,6 +66,3 @@ struct NewActivity: View {
     
 }
 
-//#Preview {
-//    NewActivity()
-//}
