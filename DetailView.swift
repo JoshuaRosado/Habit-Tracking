@@ -30,16 +30,28 @@ struct DetailView: View {
                 
                 ForEach(activities.activityList, id: \.id){ activity in
                     NavigationLink(value: activity){
+                        
+                        
+                        let str = activity.description
+                        let index = str.startIndex..<str.index(str.startIndex, offsetBy:10)
+                        let previewStr = str[index]
+                        
+                        
                         HStack{
                             
+//
                             VStack(alignment: .leading){
                                 
                                 
                                 Text(activity.title)
                                     .font(.title3)
-                                Text(activity.description)
-                                    .truncationMode(.tail)
-                                    .previewLayout(.sizeThatFits)
+                                    
+                                    
+                                    Text("\(previewStr)...")
+                                        
+                                
+                                    .foregroundStyle(.gray)
+                                    .font(.footnote)
                                 
                             }
                                 HStack{

@@ -19,20 +19,37 @@ struct NewActivity: View {
         VStack{
             NavigationStack{
                 Form{
-                    VStack{
-                        TextField("Title", text:  $title)
-                        TextField("Description", text: $description)
+                    VStack(alignment: .leading){
+                        Section("Title"){
+                            
+                            
+                            TextField("", text:  $title)
+                        }
+                        
+                        VStack{
+                            Section("Description"){
+                                TextField("Minimum of 15 characters", text: $description)
+                            }
+//                            Text("Minimum of 15 characters")
+//                                .font(.footnote)
+//                                .foregroundStyle(.gray)
+                        }
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
                             let newActivity = Activity(title: title, description: description, tapCompletionCount:0 )
                             Button(action: {
                                 
-                                activities.activityList.append(newActivity)
-                                print("Activity: \(newActivity), was added to \(activities.activityList)")
-                                
-                                dismiss()
-                                
+                                if description.count < 15 {
+                                    dismiss()
+                                } else {
+                                    
+                                    
+                                    activities.activityList.append(newActivity)
+                                    print("Activity: \(newActivity), was added to \(activities.activityList)")
+                                    
+                                    dismiss()
+                                }
                                 
                             }){
                                 Text("Create")
