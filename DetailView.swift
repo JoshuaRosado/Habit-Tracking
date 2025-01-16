@@ -33,7 +33,7 @@ struct DetailView: View {
                         
                         
                         let str = activity.description
-                        let index = str.startIndex..<str.index(str.startIndex, offsetBy:10)
+                        let index = str.startIndex..<str.index(str.startIndex, offsetBy: 10)
                         let previewStr = str[index]
                         
                         

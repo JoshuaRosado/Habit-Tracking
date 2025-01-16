@@ -23,16 +23,16 @@ struct NewActivity: View {
                         Section("Title"){
                             
                             
-                            TextField("", text:  $title)
+                            TextField("Minimum of 3 characters", text:  $title)
                         }
                         
-                        VStack{
+                        
+                        
+                        VStack(alignment: .leading){
                             Section("Description"){
                                 TextField("Minimum of 15 characters", text: $description)
                             }
-//                            Text("Minimum of 15 characters")
-//                                .font(.footnote)
-//                                .foregroundStyle(.gray)
+//
                         }
                     }
                     .toolbar {

@@ -36,19 +36,15 @@ struct DetailSheet: View{
                 Spacer()
                 HStack{
                     ForEach(activities.activityList){ activity in
-//                        Button("Done"){
-//                            activity.tapCompletionCount += 1
-//                            
-//                        }
-//                        .buttonBorderShape(.roundedRectangle)
-//                        .buttonStyle(.bordered)
-                        
-                        Text("Times completed : \(activity.tapCompletionCount)")
-                        
-                            .onTapGesture {
-                                handleTapGesture(for: activity)
-                                //                        }
-                            }
+
+                        if activity.title == title {
+                            Text("Times completed : \(activity.tapCompletionCount)")
+                            
+                                .onTapGesture {
+                                    handleTapGesture(for: activity)
+                                    //                        }
+                                }
+                        }
                     }
                 }
 
