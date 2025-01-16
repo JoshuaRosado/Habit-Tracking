@@ -85,11 +85,7 @@ struct DetailView: View {
                 
             }
             
-            
-            
-            
-            
-            
+ 
             
             .navigationDestination(for: Activity.self) { activity in
                 DetailSheet( activities: activities, title: activity.title , description: activity.description, tapCompletionCount:activity.tapCompletionCount)

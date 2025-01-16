@@ -13,13 +13,20 @@ struct DetailSheet: View{
     @ObservedObject var activities: Activities
 
     var title : String
+    var darkBlue: Color{
+        Color(red: 0, green: 0, blue: 0.1)
+    }
     var description : String
     @State var tapCompletionCount : Int
 
     
     
     var body: some View {
-
+        ZStack{
+            
+            Rectangle().foregroundStyle(darkBlue)
+                .ignoresSafeArea()
+                
             VStack{
                 HStack{
                     Text(title)
@@ -28,15 +35,15 @@ struct DetailSheet: View{
                         .padding(.top,30)
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
-                    
+                
                 Spacer()
                 Text("Description: \(description)")
                     .padding(.top, 50)
-
+                
                 Spacer()
                 HStack{
                     ForEach(activities.activityList){ activity in
-
+                        
                         if activity.title == title {
                             Text("Times completed : \(activity.tapCompletionCount)")
                             
@@ -47,10 +54,10 @@ struct DetailSheet: View{
                         }
                     }
                 }
-
-                
- 
+            }
+            .foregroundStyle(.white.opacity(0.9))
         }
+            
         
     }
     private func handleTapGesture(for activity: Activity) {
