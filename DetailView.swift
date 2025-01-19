@@ -39,7 +39,6 @@ struct DetailView: View {
                         
                         HStack{
                             
-//
                             VStack(alignment: .leading){
                                 
                                 
@@ -106,7 +105,7 @@ struct DetailView: View {
                         Image(systemName: "plus")
                             .frame(width: 100, height: 100)
                             .foregroundStyle(.blue)
-                            .padding(15)
+                            .padding(.trailing, -25)
                             
                         
 

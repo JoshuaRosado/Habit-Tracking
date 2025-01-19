@@ -11,7 +11,7 @@ import SwiftUI
  
 struct DetailSheet: View{
     @ObservedObject var activities: Activities
-
+    @Environment(\.dismiss) var dismiss
     var title : String
     var darkBlue: Color{
         Color(red: 0, green: 0, blue: 0.1)
@@ -46,28 +46,37 @@ struct DetailSheet: View{
                     ForEach(activities.activityList){ activity in
                         
                         if activity.title == title {
-                            //
-                            
-                            Text("Times completed :")
+
                             ZStack{
                                 
                                 
-                                Circle()
+                                Rectangle()
                                     .fill(Color(UIColor.systemFill)).opacity(0.3)
-                                    .frame(maxWidth: 45, maxHeight: 45)
+                                    .frame(minWidth: 200, maxHeight: 45)
                                     .shadow(color: .black.opacity(0.5), radius: 5, x: 3.5, y: 3.5)
-                                Button("\( activity.tapCompletionCount)"){
-                                    
-                                    handleTapGesture(for: activity)
-                                    
-                                }
+                                Text("Times completed : \(activity.tapCompletionCount)")
                             }
                             
                             
                         }
                     }
+                    
                 }
             }
+    
+            .toolbar {
+                ForEach(activities.activityList){ activity in
+                    if activity.title == title {
+                        Button("Complete"){
+                            handleTapGesture(for: activity)
+                            
+                            dismiss()
+                        }
+                        .padding(.trailing, 10)
+                    }
+                }
+            }
+            
         
         
             
