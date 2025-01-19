@@ -22,11 +22,7 @@ struct DetailSheet: View{
     
     
     var body: some View {
-        ZStack{
             
-            Rectangle().foregroundStyle(darkBlue)
-                .ignoresSafeArea()
-                
             VStack{
                 HStack{
                     Text(title)
@@ -36,27 +32,44 @@ struct DetailSheet: View{
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                 }
                 
-                Spacer()
-                Text("Description: \(description)")
-                    .padding(.top, 50)
+                VStack{
+                    
+                    Text(description)
+                        .padding(20)
+                    
+                }
+                .frame(minWidth: 375, alignment: .leading)
+                
                 
                 Spacer()
                 HStack{
                     ForEach(activities.activityList){ activity in
                         
                         if activity.title == title {
-                            Text("Times completed : \(activity.tapCompletionCount)")
+                            //
                             
-                                .onTapGesture {
+                            Text("Times completed :")
+                            ZStack{
+                                
+                                
+                                Circle()
+                                    .fill(Color(UIColor.systemFill)).opacity(0.3)
+                                    .frame(maxWidth: 45, maxHeight: 45)
+                                    .shadow(color: .black.opacity(0.5), radius: 5, x: 3.5, y: 3.5)
+                                Button("\( activity.tapCompletionCount)"){
+                                    
                                     handleTapGesture(for: activity)
-                                    //                        }
+                                    
                                 }
+                            }
+                            
+                            
                         }
                     }
                 }
             }
-            .foregroundStyle(.white.opacity(0.9))
-        }
+        
+        
             
         
     }

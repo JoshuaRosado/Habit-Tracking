@@ -59,12 +59,13 @@ struct DetailView: View {
                                     Spacer()
                                     ZStack{
                                         Circle()
-                                            .fill(.white)
+                                            .fill(Color(UIColor.systemFill)).opacity(0.3)
                                             .frame(maxWidth: 45, maxHeight: 45)
-                                            .shadow(color: .black.opacity(0.1), radius: 4, x: 2.5, y: 2.5)
+                                            .shadow(color: .black.opacity(0.5), radius: 5, x: 3.5, y: 3.5)
                                             .padding(.horizontal)
                                             
                                         Text("\(activity.tapCompletionCount)")
+                                        
                                     }
                                     
                                 }
