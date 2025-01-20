@@ -19,12 +19,21 @@ struct NewActivity: View {
         VStack{
             NavigationStack{
                 Form{
+                    
                     VStack(alignment: .leading){
                         Section("Title"){
                             
                             
                             TextField("Minimum of 3 characters", text:  $title)
                         }
+                        .padding(.bottom, 3)
+                        
+                        Rectangle()
+                            .stroke(.gray.opacity(0.2), lineWidth: 1)
+                            .frame(width: .infinity, height: 0.7)
+                        
+                        Spacer()
+                    
                         
                         
                         
@@ -34,6 +43,9 @@ struct NewActivity: View {
                             }
 //
                         }
+                        .padding(.bottom, 5)
+                        
+                        
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){

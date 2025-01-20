@@ -113,6 +113,7 @@ struct DetailView: View {
                 }
             
             }
+            
             .sheet(isPresented: $showingSheet){
                 NewActivity( activities: activities)
             }
