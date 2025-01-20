@@ -7,19 +7,21 @@
 
 import SwiftUI
 
+// Create a form for new activities, with title and description properties.
+
+
 struct NewActivity: View {
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss // Dismiss action
     @State private var title : String = ""
     @State private var description: String = ""
     
-    @ObservedObject var activities : Activities
+    @ObservedObject var activities : Activities // Observe the array of activities to update Views for any changes made by user
     
     var body: some View {
         VStack{
             NavigationStack{
                 Form{
-                    
                     VStack(alignment: .leading){
                         Section("Title"){
                             
@@ -49,17 +51,23 @@ struct NewActivity: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing){
+                            
                             let newActivity = Activity(title: title, description: description, tapCompletionCount:0 )
                             Button(action: {
                                 
-                                if description.count < 15 {
+                                // Button function
+                                
+                                if description.count < 15 { // Description field has to be 15 characters or more. If less,
+                                    // dismiss the sheet.
                                     dismiss()
+                                    
                                 } else {
                                     
-                                    
+                                    // If Description equal or greater than 15 characters
+                                    // Append new activity to the Array(activityList)
                                     activities.activityList.append(newActivity)
-                                    print("Activity: \(newActivity), was added to \(activities.activityList)")
-                                    
+                                
+                                    // And then dismiss the sheet
                                     dismiss()
                                 }
                                 
@@ -75,6 +83,7 @@ struct NewActivity: View {
                         
                         ToolbarItem(placement: .topBarLeading){
                             Button("Cancel",action: {
+                                
                                 dismiss()
                             })
                             .padding(5)
