@@ -10,12 +10,10 @@ import SwiftUI
 
  
 struct DetailSheet: View{
-    @ObservedObject var activities: Activities
+    @ObservedObject var activities: Activities  // Observe the array of activities to update Views for any changes made by user
     @Environment(\.dismiss) var dismiss
     var title : String
-    var darkBlue: Color{
-        Color(red: 0, green: 0, blue: 0.1)
-    }
+
     var description : String
     @State var tapCompletionCount : Int
 
@@ -45,6 +43,8 @@ struct DetailSheet: View{
                 HStack{
                     ForEach(activities.activityList){ activity in
                         
+                        // Display Competion Count according to the NavigationLink selected
+                        
                         if activity.title == title {
 
                             ZStack{
@@ -66,6 +66,7 @@ struct DetailSheet: View{
     
             .toolbar {
                 ForEach(activities.activityList){ activity in
+                    // Display the Complete button for the Activity Selected
                     if activity.title == title {
                         Button("Complete"){
                             handleTapGesture(for: activity)
@@ -84,14 +85,18 @@ struct DetailSheet: View{
     }
     private func handleTapGesture(for activity: Activity) {
       
+        // constant index = The first index of the activity array. In this case the ID was already selected so there should be only one object inside the Array
+        
            if let index = activities.activityList.firstIndex(where: { $0.id == activity.id }) {
 
+               
                incrementCompletionCount(at: index)
            }
        }
 
     
     private func incrementCompletionCount(at index: Int){
+        // Increment the tapCompletionCount by one of the activity inside of the Array  = activityList
         activities.activityList[index].tapCompletionCount += 1
     }
 }
