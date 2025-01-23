@@ -63,7 +63,8 @@ struct DetailView: View {
                                 
                                 
                                 Text(activity.title)
-                                    .font(.title3)
+                                    .font(.callout)
+                                    .bold()
                                     
                                     
                                     Text("\(previewStr)...")
@@ -94,7 +95,7 @@ struct DetailView: View {
                         }
                         
                     }
-                    .padding(10)
+                    .padding(4)
                     
                     
                     
