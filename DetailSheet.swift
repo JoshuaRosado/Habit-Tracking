@@ -11,6 +11,7 @@ import SwiftUI
  
 struct DetailSheet: View{
     @ObservedObject var activities: Activities  // Observe the array of activities to update Views for any changes made by user
+    
     @Environment(\.dismiss) var dismiss
     var title : String
 
@@ -33,7 +34,7 @@ struct DetailSheet: View{
                 VStack{
                     
                     Text(description)
-                        .padding(20)
+                        .padding(25)
                     
                 }
                 .frame(minWidth: 375, alignment: .leading)
