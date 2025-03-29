@@ -48,7 +48,7 @@ struct DetailView: View {
                         
                         
                         
-                        let index = str.startIndex..<str.index(str.startIndex, offsetBy: 10)
+                        let index = str.startIndex..<str.index(str.startIndex, offsetBy: 9)
                         
                         // string[0..<10]
                         // Display indexes 0..<10 from the string
